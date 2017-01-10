@@ -1,27 +1,33 @@
 {
   "name": "express-ftwebservice",
-  "description": "Install FT Web Standard web service descriptions in an Express.js application",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Financial-Times/express-web-service.git"
-  },
   "version": "2.2.2",
-  "devDependencies": {
-    "express": "^4.14.0",
-    "mocha": "^3.0.2",
-    "supertest": "^2.0.0"
-  },
+  "description": "Install FT Web Standard web service descriptions in an Express.js application",
+  "license": "MIT",
+  "homepage": "https://github.com/Financial-Times/express-web-service",
   "bugs": {
     "url": "https://github.com/Financial-Times/express-web-service/issues"
   },
-  "homepage": "https://github.com/Financial-Times/express-web-service#readme",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Financial-Times/express-web-service.git"
   },
+  "engines": {
+    "node": "^6",
+    "npm": "^4"
+  },
+  "main": "./lib/express-web-service.js",
   "scripts": {
-    "test": "mocha ./tests/**/*.test.js"
+    "test": "make verify test"
   },
-  "author": "",
-  "license": "MIT"
+  "devDependencies": {
+    "eslint": "^2.13.1",
+    "express": "^4.14.0",
+    "mocha": "^3.0.2",
+    "mockery": "^1.7.0",
+    "nyc": "^10.0.0",
+    "proclaim": "^3.4.4",
+    "sinon": "^1.17.6",
+    "sinon-as-promised": "^4.0.2",
+    "supertest": "^2.0.0"
+  }
 }
