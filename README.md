@@ -9,6 +9,7 @@ Create [Express] middleware to serve `/__gtg`, `/__health`, `/__about`, and `/__
     - [API Documentation](#api-documentation)
     - [Options](#options)
     - [Examples](#examples)
+  - [Migration](#migration)
   - [Contributing](#contributing)
   - [Contact](#contact)
   - [Licence](#licence)
@@ -138,6 +139,48 @@ app.use(expressWebService({
 			]);
 		});
 	}
+}));
+```
+
+
+Migration
+---------
+
+This migration guide aims to help you migrate between major versions of Express Web Service.
+
+### Migrating from v2.x.x to v3.x.x
+
+There are some big changes between versions 2 and 3 of this library. Firstly the module has been renamed from `express-ftwebservice` to `@financial-times/express-web-service`.
+
+The entire API has been updated to use Express middleware:
+
+```js
+const express = require('express');
+const expressWebService = require('@financial-times/express-web-service');
+const app = express();
+const options = {};
+
+// Old
+expressWebService(app, options);
+
+// New
+app.use(expressWebService(options));
+```
+
+Also the `about` option now accepts either an object (matching version 2), or a promise which resolves to an object. This allows you to generate your about information asynchronously:
+
+```js
+app.use(expressWebService({
+    about: {
+        name: 'My App'
+    }
+}));
+// or
+app.use(expressWebService({
+    about: new Promise((resolve, reject) => {
+        // do something async
+        resolve(retrievedAboutInfo);
+    })
 }));
 ```
 
