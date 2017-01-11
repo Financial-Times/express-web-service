@@ -20,13 +20,14 @@
     "test": "make verify test"
   },
   "dependencies": {
-      "lodash": "^4.17.4"
+    "lodash": "^4.17.4"
   },
   "devDependencies": {
     "eslint": "^2.13.1",
     "express": "^4.14.0",
     "mocha": "^3.0.2",
     "mockery": "^1.7.0",
+    "npm-prepublish": "^1.2.2",
     "nyc": "^10.0.0",
     "proclaim": "^3.4.4",
     "sinon": "^1.17.6",
