@@ -2,7 +2,7 @@
 FT Express Web Service
 ======================
 
-Mounts routes on an [Express] application for `/__gtg`, `/__health`, `/__about`, and `/__error` endpoints.
+Create [Express] middleware to serve `/__gtg`, `/__health`, `/__about`, and `/__error` endpoints.
 
   - [Usage](#usage)
     - [Requirements](#requirements)
@@ -22,7 +22,7 @@ Usage
 Running Express Web Service requires [Node.js] 6.x and [npm]. You can install with:
 
 ```sh
-npm install express-ftwebservice
+npm install @financial-times/express-web-service
 ```
 
 ### API Documentation
@@ -30,7 +30,7 @@ npm install express-ftwebservice
 Familiarity with [Express] is assumed in the rest of the API documentation. You'll also need to require the module with:
 
 ```js
-const expressWebService = require('express-ftwebservice');
+const expressWebService = require('@financial-times/express-web-service');
 ```
 
 ### `expressWebService( [options] )`
@@ -85,7 +85,7 @@ Basic example:
 
 ```JS
 const express = require('express');
-const expressWebService = require('express-ftwebservice');
+const expressWebService = require('@financial-times/express-web-service');
 
 const app = express();
 

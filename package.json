@@ -1,7 +1,7 @@
 {
-  "name": "express-ftwebservice",
+  "name": "@financial-times/express-web-service",
   "version": "2.2.2",
-  "description": "Install FT Web Standard web service descriptions in an Express.js application",
+  "description": "Create Express middleware to serve /__gtg, /__health, /__about, and /__error endpoints.",
   "license": "MIT",
   "homepage": "https://github.com/Financial-Times/express-web-service",
   "bugs": {
