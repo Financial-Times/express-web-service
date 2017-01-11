@@ -5,7 +5,18 @@ const expressWebService = require('../..');
 
 before(function(done) {
 	this.app = express();
-	expressWebService(this.app);
+	this.app.use(expressWebService({
+		about: {
+			foo: 'bar'
+		},
+		manifestPath: `${__dirname}/mock-manifest.json`,
+		routes: [
+			'about',
+			'error',
+			'gtg',
+			'health'
+		]
+	}));
 	this.server = this.app.listen(done);
 });
 

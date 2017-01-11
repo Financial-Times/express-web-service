@@ -33,9 +33,19 @@ Familiarity with [Express] is assumed in the rest of the API documentation. You'
 const expressWebService = require('express-ftwebservice');
 ```
 
-### `expressWebService( app, [options] )`
+### `expressWebService( [options] )`
 
-Adds routes to the `app`, which should be an Express application. Customisable with an [options object](#options). The following routes are added:
+Create and return a middleware for serving FT webservice endpoints, customisable with an [options object](#options).
+
+```js
+const app = express();
+
+app.use(expressWebService({
+    // options
+}));
+```
+
+The following routes are added:
 
 #### Good to go (`/__gtg`)
 
@@ -64,7 +74,7 @@ This endpoint simply throws a JavaScript error, and makes no attempt to handle i
 The available options are as follows:
 
   - `manifestPath`: (Optional) Path to the app's `package.json` file. This will be used to populate the `appVersion` and `dateDeployed` properties of the `/__about` endpoint, if they are not specified explicitly
-  - `about`: (Optional) Object containing standard runbook propeties as defined in the [ft about endpoint standard]
+  - `about`: (Optional) Object containing standard runbook properties as defined in the [ft about endpoint standard], or a Promise that resolves to an object containing these properties
   - `goodToGoTest`: (Optional) A function that can be used to indicate the good to go status of the service, the function should return a Promise resolved with `true` to indicate a positive good to go status, and `false` to indicate a negative good to go status
   - `healthCheck`: (Optional) A function that can be used to generate structured healthcheck information, the function should return a Promise resolved with an array of healthcheck objects
   - `routes`: (Optional) An array of routes to install.  Possible values are `health`, `gtg`, `about` and `error`.  Defaults to `["health", "gtg", "about"]`
@@ -74,13 +84,13 @@ The available options are as follows:
 Basic example:
 
 ```JS
-var path = require('path');
-var ftwebservice = require('express-ftwebservice');
-var express = require('express');
-var app = express();
+const express = require('express');
+const expressWebService = require('express-ftwebservice');
 
-ftwebservice(app, {
-	manifestPath: path.join(__dirname, 'package.json'),
+const app = express();
+
+app.use(expressWebService({
+	manifestPath: `${__dirname}/package.json`,
 	about: {
 		"schemaVersion": 1,
 		"name": "build-service",
@@ -89,14 +99,14 @@ ftwebservice(app, {
 		"primaryUrl": "https://origami-build.ft.com",
 		"serviceTier": "gold"
 	}
-});
+}));
 ```
 
 Example with Good To Go logic and Healthcheck logic:
 
 ```JS
-ftwebservice(app, {
-	manifestPath: path.join(__dirname, 'package.json'),
+app.use(expressWebService({
+	manifestPath: `${__dirname}/package.json`,
 	about: {
 		"schemaVersion": 1,
 		"name": "build-service",
@@ -128,7 +138,7 @@ ftwebservice(app, {
 			]);
 		});
 	}
-});
+}));
 ```
 
 
