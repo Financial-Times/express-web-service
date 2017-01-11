@@ -1,6 +1,6 @@
 {
   "name": "@financial-times/express-web-service",
-  "version": "2.2.2",
+  "version": "0.0.0",
   "description": "Create Express middleware to serve /__gtg, /__health, /__about, and /__error endpoints.",
   "license": "MIT",
   "homepage": "https://github.com/Financial-Times/express-web-service",
