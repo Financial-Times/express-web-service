@@ -44,6 +44,11 @@ const app = express();
 app.use(expressWebService({
     // options
 }));
+
+// or mount on a sub-path
+app.use('/example', expressWebService({
+    // options
+}));
 ```
 
 The following routes are added:
