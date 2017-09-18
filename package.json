@@ -12,8 +12,8 @@
     "url": "https://github.com/Financial-Times/express-web-service.git"
   },
   "engines": {
-    "node": "^6",
-    "npm": "^4"
+    "node": ">=6",
+    "npm": ">=4"
   },
   "main": "./lib/express-web-service.js",
   "scripts": {
