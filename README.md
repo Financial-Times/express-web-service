@@ -26,6 +26,8 @@ Running Express Web Service requires [Node.js] 6.x and [npm]. You can install wi
 npm install @financial-times/express-web-service
 ```
 
+You'll also need to be using [Express] 4+. Express Web Service also supports [Restify] with a few modifications, see [the examples](#examples) for more information.
+
 ### API Documentation
 
 Familiarity with [Express] is assumed in the rest of the API documentation. You'll also need to require the module with:
@@ -147,6 +149,21 @@ app.use(expressWebService({
 }));
 ```
 
+Example of using with [Restify] rather than Express:
+
+```js
+const expressWebService = require('@financial-times/express-web-service');
+const restify = require('restify');
+
+const server = restify.createServer();
+
+// Because Restify doesn't mount middleware for routes that don't exist,
+// we have to explicitly define the required routes
+server.get(/^\/__(about|gtg|health)$/, expressWebService({
+	// config
+}));
+```
+
 
 Migration
 ---------
@@ -224,3 +241,4 @@ This software is published by the Financial Times under the [MIT licence][licens
 [node.js]: https://nodejs.org/
 [npm]: https://www.npmjs.com/
 [origami support]: mailto:origami-support@ft.com
+[restify]: http://restify.com/
