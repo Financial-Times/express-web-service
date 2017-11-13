@@ -217,6 +217,29 @@ describe('lib/express-web-service', () => {
 
 			});
 
+			describe('when `request.path` is a function (Restify API)', () => {
+
+				beforeEach(() => {
+					next.reset();
+					express.mockRequest.path = sinon.stub().returns('/__about');
+					middleware(express.mockRequest, express.mockResponse, next);
+				});
+
+				it('calls `request.path`', () => {
+					assert.calledOnce(express.mockRequest.path);
+				});
+
+				it('still calls the expected middleware function', () => {
+					assert.calledOnce(middleware.about);
+					assert.calledWithExactly(middleware.about, express.mockRequest, express.mockResponse, next);
+				});
+
+				it('does not call `next`', () => {
+					assert.notCalled(next);
+				});
+
+			});
+
 		});
 
 		describe('middleware.about(request, response, next)', () => {

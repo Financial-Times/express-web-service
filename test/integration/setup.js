@@ -2,10 +2,12 @@
 
 const express = require('express');
 const expressWebService = require('../..');
+const restify = require('restify');
 
 before(function(done) {
-	this.app = express();
-	this.app.use(expressWebService({
+
+	this.expressApp = express();
+	this.expressApp.use(expressWebService({
 		about: {
 			foo: 'bar'
 		},
@@ -17,9 +19,26 @@ before(function(done) {
 			'health'
 		]
 	}));
-	this.server = this.app.listen(done);
+
+	this.restifyApp = restify.createServer();
+	this.restifyApp.get(/^\/__(about|gtg|health)$/, expressWebService({
+		about: {
+			foo: 'bar'
+		},
+		manifestPath: `${__dirname}/mock-manifest.json`,
+		routes: [
+			'about',
+			'gtg',
+			'health'
+		]
+	}));
+
+	this.expressServer = this.expressApp.listen(() => {
+		this.restifyServer = this.restifyApp.listen(done);
+	});
 });
 
 after(function() {
-	this.server.close();
+	this.expressServer.close();
+	this.restifyServer.close();
 });
