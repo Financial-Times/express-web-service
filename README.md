@@ -65,7 +65,7 @@ Always returns `200 OK` unless a `goodToGoTest` option is specified.
 
 Conforms to the [FT Healthcheck standard], returning JSON data summarising the current health status of the application.
 
-Always returns a 'blank' healthcheck response (ie a valid healthcheck response with no checks) unless the `healthCheck` option is specified.
+Always returns an `[{ ok:true }]` healthcheck response (ie a valid healthcheck response with a single ok check) unless the `healthCheck` option is specified.
 
 #### About (`/__about`)
 
