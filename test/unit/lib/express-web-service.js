@@ -63,7 +63,7 @@ describe('lib/express-web-service', () => {
 			assert.isFunction(expressWebService.defaults.healthCheck);
 			assert.instanceOf(expressWebService.defaults.healthCheck(), Promise);
 			return expressWebService.defaults.healthCheck().then(value => {
-				assert.deepEqual(value, []);
+				assert.deepEqual(value, [ { ok: true }]);
 			});
 		});
 
