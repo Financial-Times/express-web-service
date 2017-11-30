@@ -1,0 +1,12 @@
+{
+	"description": "Create Express middleware to serve /__gtg, /__health, /__about, and /__error endpoints.",
+	"origamiType": null,
+	"origamiVersion": 1,
+	"keywords": [],
+	"support": "https://github.com/Financial-Times/express-web-service/issues",
+	"supportStatus": "active",
+	"supportContact": {
+		"email": "origami.support@ft.com",
+		"slack": "financialtimes/ft-origami"
+	}
+}
