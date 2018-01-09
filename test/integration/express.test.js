@@ -8,7 +8,7 @@ describe('ft-express-web-service', function() {
 	it('has a /__gtg endpoint which returns a text document with a 200', function() {
 		return request(this.expressApp)
 			.get('/__gtg')
-			.expect('Cache-Control', 'max-age=0, must-revalidate, no-cache, no-store')
+			.expect('Cache-Control', 'max-age=0, must-revalidate, no-cache, no-store, private')
 			.expect('Content-Type', /text\/plain/i)
 			.expect(200);
 	});
@@ -16,7 +16,7 @@ describe('ft-express-web-service', function() {
 	it('has a /__health endpoint which returns JSON with a 200 which follows the schema', function() {
 		return request(this.expressApp)
 			.get('/__health')
-			.expect('Cache-Control', 'max-age=0, must-revalidate, no-cache, no-store')
+			.expect('Cache-Control', 'max-age=0, must-revalidate, no-cache, no-store, private')
 			.expect('Content-Type', /application\/json/i)
 			.expect(200);
 	});
@@ -24,7 +24,7 @@ describe('ft-express-web-service', function() {
 	it('has a /__about endpoint which returns JSON with a 200', function() {
 		return request(this.expressApp)
 			.get('/__about')
-			.expect('Cache-Control', 'max-age=0, must-revalidate, no-cache, no-store')
+			.expect('Cache-Control', 'max-age=0, must-revalidate, no-cache, no-store, private')
 			.expect('Content-Type', /application\/json/i)
 			.expect(response => {
 				assert.strictEqual(response.body.foo, 'bar');
