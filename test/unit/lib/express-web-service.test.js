@@ -48,7 +48,7 @@ describe('lib/express-web-service', () => {
 		});
 
 		it('has a `cacheControl` property', () => {
-			assert.deepEqual(expressWebService.defaults.cacheControl, 'max-age=0, must-revalidate, no-cache, no-store');
+			assert.deepEqual(expressWebService.defaults.cacheControl, 'max-age=0, must-revalidate, no-cache, no-store, private');
 		});
 
 		it('has a `goodToGoTest` property', () => {
