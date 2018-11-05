@@ -1,5 +1,5 @@
 
-FT Express Web Service
+FT Express Web Service [![CircleCI](https://circleci.com/gh/Financial-Times/express-web-service.svg?style=svg)](https://circleci.com/gh/Financial-Times/express-web-service)
 ======================
 
 Create [Express] middleware to serve `/__gtg`, `/__health`, `/__about`, and `/__error` endpoints.
