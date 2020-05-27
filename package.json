@@ -29,7 +29,7 @@
     "mocha": "^3.0.2",
     "mockery": "^1.7.0",
     "npm-prepublish": "^1.2.2",
-    "nyc": "^10.0.0",
+    "nyc": "^15.0.1",
     "proclaim": "^3.4.4",
     "restify": "^6.3.2",
     "sinon": "^1.17.6",
