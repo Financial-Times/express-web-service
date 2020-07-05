@@ -22,7 +22,7 @@
     "prepare": "npm run snyk-protect"
   },
   "dependencies": {
-    "@financial-times/origami-service-makefile": "^6.0.1",
+    "@financial-times/origami-service-makefile": "^7.0.3",
     "lodash": "^4.17.4",
     "snyk": "^1.335.0"
   },
