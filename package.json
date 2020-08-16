@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@financial-times/origami-service-makefile": "^7.0.3",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.20",
     "snyk": "^1.335.0"
   },
   "devDependencies": {
