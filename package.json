@@ -34,7 +34,7 @@
     "npm-prepublish": "^1.2.2",
     "nyc": "^15.0.1",
     "proclaim": "^3.4.4",
-    "restify": "^6.3.2",
+    "restify": "^8.5.1",
     "sinon": "^1.17.6",
     "sinon-as-promised": "^4.0.2",
     "supertest": "^4.0.2"
