@@ -1,22 +1,18 @@
-
-FT Express Web Service
-======================
+# FT Express Web Service
 
 Create [Express] middleware to serve `/__gtg`, `/__health`, `/__about`, and `/__error` endpoints.
 
-  - [Usage](#usage)
-    - [Requirements](#requirements)
-    - [API Documentation](#api-documentation)
-    - [Options](#options)
-    - [Examples](#examples)
-  - [Migration](#migration)
-  - [Contributing](#contributing)
-  - [Contact](#contact)
-  - [Licence](#licence)
+- [Usage](#usage)
+  - [Requirements](#requirements)
+  - [API Documentation](#api-documentation)
+  - [Options](#options)
+  - [Examples](#examples)
+- [Migration](#migration)
+- [Contributing](#contributing)
+- [Contact](#contact)
+- [Licence](#licence)
 
-
-Usage
------
+## Usage
 
 ### Requirements
 
@@ -33,7 +29,7 @@ You'll also need to be using [Express] 4+. Express Web Service also supports [Re
 Familiarity with [Express] is assumed in the rest of the API documentation. You'll also need to require the module with:
 
 ```js
-const expressWebService = require('@financial-times/express-web-service');
+const expressWebService = require("@financial-times/express-web-service")
 ```
 
 ### `expressWebService( [options] )`
@@ -41,16 +37,21 @@ const expressWebService = require('@financial-times/express-web-service');
 Create and return a middleware for serving FT webservice endpoints, customisable with an [options object](#options).
 
 ```js
-const app = express();
+const app = express()
 
-app.use(expressWebService({
-    // options
-}));
+app.use(
+	expressWebService({
+		// options
+	})
+)
 
 // or mount on a sub-path
-app.use('/example', expressWebService({
-    // options
-}));
+app.use(
+	"/example",
+	expressWebService({
+		// options
+	})
+)
 ```
 
 The following routes are added:
@@ -71,7 +72,7 @@ Always returns an `[{ ok:true }]` healthcheck response (ie a valid healthcheck r
 
 Conforms to the (at time of writing, draft) [FT About endpoint standard], returning JSON data describing the application, and providing links to all relevant dashboards and support documentation resources.
 
-The information emitted by the about endpoint is populated from the `about` option.  The `_hostname` and `appVersion` fields will be populated automatically if not present in the data passed in through the `about` option.
+The information emitted by the about endpoint is populated from the `about` option. The `_hostname` and `appVersion` fields will be populated automatically if not present in the data passed in through the `about` option.
 
 #### Error (`/__error`)
 
@@ -81,11 +82,11 @@ This endpoint simply throws a JavaScript error, and makes no attempt to handle i
 
 The available options are as follows:
 
-  - `manifestPath`: (Optional) Path to the app's `package.json` file. This will be used to populate the `appVersion` and `dateDeployed` properties of the `/__about` endpoint, if they are not specified explicitly
-  - `about`: (Optional) Object containing standard runbook properties as defined in the [ft about endpoint standard], or a Promise that resolves to an object containing these properties
-  - `goodToGoTest`: (Optional) A function that can be used to indicate the good to go status of the service, the function should return a Promise resolved with `true` to indicate a positive good to go status, and `false` to indicate a negative good to go status
-  - `healthCheck`: (Optional) A function that can be used to generate structured healthcheck information, the function should return a Promise resolved with an array of healthcheck objects
-  - `routes`: (Optional) An array of routes to install.  Possible values are `health`, `gtg`, `about` and `error`.  Defaults to `["health", "gtg", "about"]`
+- `manifestPath`: (Optional) Path to the app's `package.json` file. This will be used to populate the `appVersion` and `dateDeployed` properties of the `/__about` endpoint, if they are not specified explicitly
+- `about`: (Optional) Object containing standard runbook properties as defined in the [ft about endpoint standard], or a Promise that resolves to an object containing these properties
+- `goodToGoTest`: (Optional) A function that can be used to indicate the good to go status of the service, the function should return a Promise resolved with `true` to indicate a positive good to go status, and `false` to indicate a negative good to go status
+- `healthCheck`: (Optional) A function that can be used to generate structured healthcheck information, the function should return a Promise resolved with an array of healthcheck objects
+- `routes`: (Optional) An array of routes to install. Possible values are `health`, `gtg`, `about` and `error`. Defaults to `["health", "gtg", "about"]`
 
 ### Examples
 
@@ -152,21 +153,22 @@ app.use(expressWebService({
 Example of using with [Restify] rather than Express:
 
 ```js
-const expressWebService = require('@financial-times/express-web-service');
-const restify = require('restify');
+const expressWebService = require("@financial-times/express-web-service")
+const restify = require("restify")
 
-const server = restify.createServer();
+const server = restify.createServer()
 
 // Because Restify doesn't mount middleware for routes that don't exist,
 // we have to explicitly define the required routes
-server.get(/^\/__(about|gtg|health)$/, expressWebService({
-	// config
-}));
+server.get(
+	/^\/__(about|gtg|health)$/,
+	expressWebService({
+		// config
+	})
+)
 ```
 
-
-Migration
----------
+## Migration
 
 This migration guide aims to help you migrate between major versions of Express Web Service.
 
@@ -177,38 +179,40 @@ There are some big changes between versions 2 and 3 of this library. Firstly the
 The entire API has been updated to use Express middleware:
 
 ```js
-const express = require('express');
-const expressWebService = require('@financial-times/express-web-service');
-const app = express();
-const options = {};
+const express = require("express")
+const expressWebService = require("@financial-times/express-web-service")
+const app = express()
+const options = {}
 
 // Old
-expressWebService(app, options);
+expressWebService(app, options)
 
 // New
-app.use(expressWebService(options));
+app.use(expressWebService(options))
 ```
 
 Also the `about` option now accepts either an object (matching version 2), or a promise which resolves to an object. This allows you to generate your about information asynchronously:
 
 ```js
-app.use(expressWebService({
-    about: {
-        name: 'My App'
-    }
-}));
+app.use(
+	expressWebService({
+		about: {
+			name: "My App",
+		},
+	})
+)
 // or
-app.use(expressWebService({
-    about: new Promise((resolve, reject) => {
-        // do something async
-        resolve(retrievedAboutInfo);
-    })
-}));
+app.use(
+	expressWebService({
+		about: new Promise((resolve, reject) => {
+			// do something async
+			resolve(retrievedAboutInfo)
+		}),
+	})
+)
 ```
 
-
-Contributing
-------------
+## Contributing
 
 This module has a full suite of unit tests, and is verified with ESLint. You can use the following commands to check your code before opening a pull request.
 
@@ -217,19 +221,13 @@ make verify  # verify JavaScript code with ESLint
 make test    # run the unit tests and check coverage
 ```
 
-
-Contact
--------
+## Contact
 
 If you have any questions or comments about this module, or need help using it, please either [raise an issue][issues], visit [#origami-support] or email [Origami Support].
 
-
-Licence
--------
+## Licence
 
 This software is published by the Financial Times under the [MIT licence][license].
-
-
 
 [#origami-support]: https://financialtimes.slack.com/messages/origami-support/
 [express]: http://expressjs.com/
