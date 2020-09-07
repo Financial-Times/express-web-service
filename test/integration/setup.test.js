@@ -21,7 +21,7 @@ before(function(done) {
 	}));
 
 	this.restifyApp = restify.createServer();
-	this.restifyApp.get(/^\/__(about|gtg|health)$/, expressWebService({
+	const healthService = expressWebService({
 		about: {
 			foo: 'bar'
 		},
@@ -31,7 +31,11 @@ before(function(done) {
 			'gtg',
 			'health'
 		]
-	}));
+	});
+	
+	this.restifyApp.get('/__about', healthService);
+	this.restifyApp.get('/__gtg', healthService);
+	this.restifyApp.get('/__health', healthService);
 
 	this.expressServer = this.expressApp.listen(() => {
 		this.restifyServer = this.restifyApp.listen(done);
