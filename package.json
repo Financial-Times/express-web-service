@@ -37,7 +37,7 @@
     "restify": "^8.5.1",
     "sinon": "^1.17.6",
     "sinon-as-promised": "^4.0.2",
-    "supertest": "^4.0.2"
+    "supertest": "^5.0.0"
   },
   "snyk": true
 }
