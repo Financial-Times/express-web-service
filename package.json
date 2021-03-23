@@ -24,7 +24,7 @@
   "dependencies": {
     "@financial-times/origami-service-makefile": "^7.0.3",
     "lodash": "^4.17.21",
-    "snyk": "^1.425.4"
+    "snyk": "^1.465.0"
   },
   "devDependencies": {
     "eslint": "^7.4.0",
