@@ -17,14 +17,11 @@
   },
   "main": "./lib/express-web-service.js",
   "scripts": {
-    "test": "make verify test",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "test": "make verify test"
   },
   "dependencies": {
     "@financial-times/origami-service-makefile": "^7.0.3",
-    "lodash": "^4.17.21",
-    "snyk": "^1.465.0"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "eslint": "^7.4.0",
